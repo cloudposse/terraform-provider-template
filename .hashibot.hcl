@@ -50,4 +50,3 @@ behavior "pull_request_path_labeler" "cross_provider_labels" {
         "dependencies" = ["vendor/**/*"]
     }
 }
-

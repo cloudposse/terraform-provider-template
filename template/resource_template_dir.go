@@ -90,7 +90,7 @@ func resourceTemplateDirCreate(d *schema.ResourceData, meta interface{}) error {
 	// Create the destination directory and any other intermediate directories
 	// leading to it.
 	if _, err := os.Stat(destinationDir); err != nil {
-		if err := os.MkdirAll(destinationDir, 0777); err != nil {
+		if err := os.MkdirAll(destinationDir, 0o777); err != nil {
 			return err
 		}
 	}
@@ -150,7 +150,7 @@ func generateDirFile(sourceDir, destinationDir string, f os.FileInfo, vars map[s
 
 	outputDir := path.Dir(destinationDir)
 	if _, err := os.Stat(outputDir); err != nil {
-		if err := os.MkdirAll(outputDir, 0777); err != nil {
+		if err := os.MkdirAll(outputDir, 0o777); err != nil {
 			return err
 		}
 	}

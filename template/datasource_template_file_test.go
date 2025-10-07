@@ -15,7 +15,7 @@ var testProviders = map[string]terraform.ResourceProvider{
 }
 
 func TestTemplateRendering(t *testing.T) {
-	var cases = []struct {
+	cases := []struct {
 		vars     string
 		template string
 		want     string
