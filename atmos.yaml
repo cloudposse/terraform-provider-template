@@ -44,9 +44,9 @@ commands:
   description: Install the provider
   steps:
     - |
-      OUTPUT_DIR=~/.terraform.d/plugins/${HOSTNAME:-registry.terraform.io}/${NAMESPACE:-cloudposse}/${NAME:-utils}/${VERSION:-9999.99.99}/${GOOS:-linux}_${GOARCH:-amd64}
+      OUTPUT_DIR=~/.terraform.d/plugins/${HOSTNAME:-registry.terraform.io}/${NAMESPACE:-cloudposse}/${NAME:-template}/${VERSION:-9999.99.99}/${GOOS:-linux}_${GOARCH:-amd64}
       mkdir -p ${OUTPUT_DIR}
-      mv ${BINARY:-terraform-provider-awsutils} ${OUTPUT_DIR}
+      mv ${BINARY:-terraform-provider-template} ${OUTPUT_DIR}
 
 - name: testacc
   description: Run acceptance tests
