@@ -1,15 +1,15 @@
 package template
 
 import (
-	"fmt"
-	"testing"
-
 	"errors"
-	r "github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
+	"fmt"
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"testing"
+
+	r "github.com/hashicorp/terraform/helper/resource"
+	"github.com/hashicorp/terraform/terraform"
 )
 
 const templateDirRenderingConfig = `
@@ -27,29 +27,29 @@ type testTemplate struct {
 func testTemplateDirWriteFiles(files map[string]testTemplate) (in, out string, err error) {
 	in, err = ioutil.TempDir(os.TempDir(), "terraform_template_dir")
 	if err != nil {
-		return
+		return in, out, err
 	}
 
 	for name, file := range files {
 		path := filepath.Join(in, name)
 
-		err = os.MkdirAll(filepath.Dir(path), 0777)
+		err = os.MkdirAll(filepath.Dir(path), 0o777)
 		if err != nil {
-			return
+			return in, out, err
 		}
 
-		err = ioutil.WriteFile(path, []byte(file.template), 0777)
+		err = ioutil.WriteFile(path, []byte(file.template), 0o777)
 		if err != nil {
-			return
+			return in, out, err
 		}
 	}
 
 	out = fmt.Sprintf("%s.out", in)
-	return
+	return in, out, err
 }
 
 func TestTemplateDirRendering(t *testing.T) {
-	var cases = []struct {
+	cases := []struct {
 		vars  string
 		files map[string]testTemplate
 	}{

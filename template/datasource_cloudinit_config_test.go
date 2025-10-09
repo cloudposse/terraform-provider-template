@@ -77,7 +77,7 @@ func TestRender_handlePanic(t *testing.T) {
 		Steps: []r.TestStep{
 			{
 				Config:      testCloudInitConfig_misconfiguredParts,
-				ExpectError: regexp.MustCompile("Unable to parse parts in cloudinit resource declaration"),
+				ExpectError: regexp.MustCompile("unable to parse parts in cloudinit resource declaration"),
 			},
 		},
 	})

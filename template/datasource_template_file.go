@@ -170,5 +170,5 @@ func validateVarsAttribute(v interface{}, key string) (ws []string, es []error) 
 			"%s: cannot contain non-primitives; bad keys: %s",
 			key, strings.Join(badVars, ", ")))
 	}
-	return
+	return ws, es
 }
